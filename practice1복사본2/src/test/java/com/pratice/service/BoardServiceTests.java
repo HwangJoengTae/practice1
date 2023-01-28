@@ -6,9 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.practice.main.BoardController;
 import com.practice.model.BoardVO;
 import com.practice.service.BoardService;
 
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 public class BoardServiceTests {
@@ -16,18 +19,27 @@ public class BoardServiceTests {
     @Autowired
     private BoardService service;
     
+//    @Test
+//    public void testEnroll() {
+//        
+//        BoardVO vo = new BoardVO();
+//        
+//        vo.setTitle("service test");
+//        vo.setContent("service test");
+//        vo.setWriter("service test");
+//        
+//        service.enroll(vo);
+//        
+//    }
+ 
+    /*게시판 조회*/
     @Test
-    public void testEnroll() {
+    public void testGETPage() {
         
-        BoardVO vo = new BoardVO();
+        int bno = 8;
         
-        vo.setTitle("service test");
-        vo.setContent("service test");
-        vo.setWriter("service test");
-        
-        service.enroll(vo);
+        log.info("" + service.getPage(bno));
         
     }
- 
 }
  

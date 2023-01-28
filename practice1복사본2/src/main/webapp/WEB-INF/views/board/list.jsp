@@ -10,7 +10,7 @@
 <script src="https://code.jquery.com/jquery-3.4.1.js"
 	integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
 	crossorigin="anonymous"></script>
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="/resources/css/style.css">
 </head>
 <body>
 	<h1>목록페이지입니다.</h1>
@@ -29,7 +29,10 @@
 			<c:forEach items="${list}" var="list">
 				<tr>
 					<td><c:out value="${list.bno}" /></td>
-					<td><c:out value="${list.title}" /></td>
+					<td> <a class="move" href='/board/get?bno=<c:out value="${list.bno}"/>'>
+                        <c:out value="${list.title}"/>
+                    </a>
+                    </td>
 					<td><c:out value="${list.writer}" /></td>
 					<td><fmt:formatDate pattern="yyyy/MM/dd" value="${list.regdate}" /></td>
 					<td><fmt:formatDate pattern="yyyy/MM/dd" value="${list.updateDate}" /></td>
