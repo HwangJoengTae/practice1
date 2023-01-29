@@ -24,4 +24,41 @@
 	<select id="getPage" resultType="com.practice.model.BoardVO">
 		select * from board where bno=#{bno}
 	</select>
+	
+	<!-- 게시물 목록(페이징) -->
+    <select id="getListPaging" resultType="com.practice.model.BoardVO">
+    
+    <![CDATA[
+        
+        select bno, title, content, writer, regdate, updatedate from(
+        
+                select /*+INDEX_DESC(board pk_board) */ rownum  as rn, bno, title, content, writer, regdate, updatedate
+                  
+                from board where rownum <= #{pageNum} * #{amount}) 
+                
+        where rn > (#{pageNum} -1) * #{amount}
+    
+    ]]>
+    
+    </select>
+	
+	<!--  게시판 수정 -->
+	<update id="modify">
+		update board set title=#{title}, content=#{content}, updatedate = sysdate where bno=#{bno}
+	</update>
+	
+	 
+    <!-- 게시판 삭제 -->
+    <delete id="delete">
+    
+        delete from board where bno = #{bno}
+    
+    </delete>
+    
+    <!-- 게시물 총 개숫 -->
+    <select id="getTotal" resultType="int">
+    
+        select count(*) from board
+    
+    </select>
 </mapper>
